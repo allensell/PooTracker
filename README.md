@@ -13,7 +13,7 @@ A personal digestive health tracker using the Bristol Stool Scale. Log daily ent
 ## Requirements
 
 - Python 3.8+
-- pip
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 ## Setup
 
@@ -21,11 +21,11 @@ A personal digestive health tracker using the Bristol Stool Scale. Log daily ent
 git clone https://github.com/allensell/PooTracker.git
 cd PooTracker
 
-# Install dependencies
-pip3 install -r requirements.txt
+# Install dependencies and create virtual environment
+uv sync
 
 # Start the app
-python3 app.py
+uv run python3 app.py
 ```
 
 Then open [http://localhost:5050](http://localhost:5050) in your browser.
@@ -87,7 +87,8 @@ Example entry:
 ```
 PooTracker/
 ├── app.py               # Flask backend
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── .gitignore
 ├── data/
 │   └── poo_data.json    # Created automatically (gitignored)
