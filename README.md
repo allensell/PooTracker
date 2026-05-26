@@ -18,7 +18,8 @@ A personal digestive health tracker using the Bristol Stool Scale. Log daily ent
 ## Setup
 
 ```bash
-cd /Users/allensell/PooTracker
+git clone https://github.com/allensell/PooTracker.git
+cd PooTracker
 
 # Install dependencies
 pip3 install -r requirements.txt
