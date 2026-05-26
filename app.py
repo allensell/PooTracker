@@ -36,6 +36,11 @@ def index():
     return render_template("index.html", blood_options=BLOOD_OPTIONS, poo_types=POO_TYPES)
 
 
+@app.route("/history")
+def history():
+    return render_template("history.html")
+
+
 @app.route("/api/entry", methods=["POST"])
 def add_entry():
     body = request.json

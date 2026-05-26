@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PooTracker 💩 — History</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>💩 PooTracker</h1>
+    <p class="subtitle">Track your digestive health with the Bristol Stool Scale</p>
+    <nav>
+      <a href="/" class="nav-link">Log Entry</a>
+      <a href="/history" class="nav-link active">History</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>History <span id="entry-count" class="entry-count"></span></h2>
+      <div id="entries-container">
+        <p class="empty-state">No entries yet. <a href="/" class="link">Log one!</a></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/history.js"></script>
+</body>
+</html>
