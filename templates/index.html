@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PooTracker 💩</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>💩 PooTracker</h1>
+    <p class="subtitle">Track your digestive health with the Bristol Stool Scale</p>
+  </header>
+
+  <main>
+    <!-- Entry Form -->
+    <section class="card" id="entry-section">
+      <h2>Log an Entry</h2>
+      <form id="entry-form">
+        <div class="form-row">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+
+        <div class="form-row">
+          <label for="blood">Blood Level</label>
+          <select id="blood" name="blood" required>
+            <option value="" disabled selected>Select blood level…</option>
+            {% for opt in blood_options %}
+            <option value="{{ opt }}">{{ opt }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="poo_type">Poo Type</label>
+          <select id="poo_type" name="poo_type" required>
+            <option value="" disabled selected>Select type…</option>
+            {% for t in poo_types %}
+            <option value="{{ t }}">{{ t }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Save Entry</button>
+        <p id="form-message" class="form-message"></p>
+      </form>
+    </section>
+
+    <!-- Charts -->
+    <section class="card" id="stats-section">
+      <h2>Totals</h2>
+      <div class="chart-grid">
+        <div class="chart-container">
+          <h3>Blood Levels</h3>
+          <canvas id="bloodChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3>Poo Types</h3>
+          <canvas id="typeChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Entries -->
+    <section class="card" id="history-section">
+      <h2>History</h2>
+      <div id="entries-container">
+        <p class="empty-state">No entries yet. Log one above!</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
