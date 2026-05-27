@@ -2,8 +2,8 @@ let bloodChart = null;
 let typeChart = null;
 
 const BLOOD_COLORS = [
-  "rgba(255,60, 60, 0.95)",
-  "rgba(232, 80, 80, 0.85)",
+  "rgba(232,80, 80, 0.85)",
+  "rgba(255, 60, 60, 0.90)",
   "rgba(232, 132, 58, 0.85)",
   "rgba(76, 175, 106, 0.85)",
 ];
