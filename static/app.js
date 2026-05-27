@@ -1,11 +1,14 @@
 let bloodChart = null;
 let typeChart = null;
 
+// Ordered most-severe → least-severe for the chart display
+const BLOOD_ORDER = ["Flood of Blood", "Blood", "Little Blood", "No Blood"];
+
 const BLOOD_COLORS = [
-  "rgba(232,80, 80, 0.85)",
-  "rgba(255, 60, 60, 0.90)",
-  "rgba(232, 132, 58, 0.85)",
-  "rgba(76, 175, 106, 0.85)",
+  "rgba(200, 30, 30, 0.90)",   // Flood of Blood
+  "rgba(232, 80, 80, 0.85)",   // Blood
+  "rgba(232, 132, 58, 0.85)",  // Little Blood
+  "rgba(76, 175, 106, 0.85)",  // No Blood
 ];
 
 const TYPE_COLORS = [
@@ -24,8 +27,8 @@ async function fetchStats() {
 }
 
 function renderBloodChart(stats) {
-  const labels = Object.keys(stats.blood);
-  const values = Object.values(stats.blood);
+  const labels = BLOOD_ORDER;
+  const values = BLOOD_ORDER.map(k => stats.blood[k] ?? 0);
   const ctx = document.getElementById("bloodChart").getContext("2d");
 
   if (bloodChart) bloodChart.destroy();
