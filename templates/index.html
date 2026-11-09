@@ -53,7 +53,7 @@
       </form>
     </section>
 
-    <!-- Charts -->
+    <!-- Charts & Streaks -->
     <section class="card" id="stats-section">
       <h2>Totals</h2>
       <div class="chart-grid">
@@ -65,6 +65,43 @@
           <h3>Poo Types</h3>
           <canvas id="typeChart"></canvas>
         </div>
+      </div>
+
+      <h3 class="streaks-heading">Streaks</h3>
+      <div class="streak-grid">
+
+        <div class="streak-card streak-blood">
+          <div class="streak-title">Blood-Free Days</div>
+          <div class="streak-body">
+            <div class="streak-side">
+              <span class="streak-num" id="nb-current">—</span>
+              <span class="streak-label">current</span>
+            </div>
+            <div class="streak-divider"></div>
+            <div class="streak-side">
+              <span class="streak-num streak-num-muted" id="nb-best">—</span>
+              <span class="streak-label">best</span>
+            </div>
+          </div>
+          <div class="streak-vs">vs <span id="ab-current">—</span> day(s) with blood currently</div>
+        </div>
+
+        <div class="streak-card streak-type">
+          <div class="streak-title">Healthy Type Days (3 &amp; 4)</div>
+          <div class="streak-body">
+            <div class="streak-side">
+              <span class="streak-num" id="nt-current">—</span>
+              <span class="streak-label">current</span>
+            </div>
+            <div class="streak-divider"></div>
+            <div class="streak-side">
+              <span class="streak-num streak-num-muted" id="nt-best">—</span>
+              <span class="streak-label">best</span>
+            </div>
+          </div>
+          <div class="streak-sub">consecutive logged days</div>
+        </div>
+
       </div>
     </section>
 

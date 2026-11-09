@@ -86,10 +86,22 @@ function renderTypeChart(stats) {
   });
 }
 
+function renderStreaks(trends) {
+  document.getElementById("nb-current").textContent = trends.no_blood.current;
+  document.getElementById("nb-best").textContent    = trends.no_blood.best;
+  document.getElementById("ab-current").textContent = trends.any_blood.current;
+  document.getElementById("nt-current").textContent = trends.normal_type.current;
+  document.getElementById("nt-best").textContent    = trends.normal_type.best;
+}
+
 async function refresh() {
-  const stats = await fetchStats();
+  const [stats, trends] = await Promise.all([
+    fetch("/api/stats").then(r => r.json()),
+    fetch("/api/trends").then(r => r.json()),
+  ]);
   renderBloodChart(stats);
   renderTypeChart(stats);
+  renderStreaks(trends);
 }
 
 document.getElementById("entry-form").addEventListener("submit", async (e) => {

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import json
 import os
-from datetime import datetime
+from datetime import datetime, date as date_cls
 
 app = Flask(__name__)
 DATA_FILE = os.path.join(os.path.dirname(__file__), 'data', 'poo_data.json')
@@ -95,6 +95,72 @@ def get_stats():
             type_counts[t] += 1
 
     return jsonify({"blood": blood_counts, "types": type_counts, "total": len(data)})
+
+
+NORMAL_TYPES = {
+    "Type 3 - Sausage Shape with Cracks (N)",
+    "Type 4 - Smooth, Soft Sausage (N)",
+}
+
+
+@app.route("/api/trends")
+def get_trends():
+    data = load_data()
+    empty = {"current": 0, "best": 0}
+    if not data:
+        return jsonify({"no_blood": empty, "any_blood": empty, "normal_type": empty})
+
+    from collections import defaultdict
+    by_date = defaultdict(list)
+    for entry in data:
+        by_date[entry["date"]].append(entry)
+
+    sorted_dates = sorted(by_date.keys())
+
+    def no_blood_day(entries):
+        return all(e["blood"] == "No Blood" for e in entries)
+
+    def any_blood_day(entries):
+        return any(e["blood"] != "No Blood" for e in entries)
+
+    def normal_type_day(entries):
+        return any(e["poo_type"] in NORMAL_TYPES for e in entries)
+
+    def calc_streaks(predicate):
+        best = 0
+        run = 0
+        last_match = None
+
+        for d in sorted_dates:
+            day = date_cls.fromisoformat(d)
+            if predicate(by_date[d]):
+                consecutive = last_match is not None and (day - last_match).days == 1
+                run = run + 1 if consecutive else 1
+                best = max(best, run)
+                last_match = day
+            else:
+                run = 0
+                last_match = None
+
+        # Current streak: walk most-recent dates backwards
+        current = 0
+        prev = None
+        for d in reversed(sorted_dates):
+            day = date_cls.fromisoformat(d)
+            if not predicate(by_date[d]):
+                break
+            if prev is not None and (prev - day).days != 1:
+                break
+            current += 1
+            prev = day
+
+        return {"current": current, "best": best}
+
+    return jsonify({
+        "no_blood":    calc_streaks(no_blood_day),
+        "any_blood":   calc_streaks(any_blood_day),
+        "normal_type": calc_streaks(normal_type_day),
+    })
 
 
 if __name__ == "__main__":

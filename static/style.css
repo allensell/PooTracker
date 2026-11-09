@@ -188,6 +188,85 @@ select option {
   margin-bottom: 0.75rem;
 }
 
+/* Streaks */
+.streaks-heading {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 1.75rem 0 0.85rem;
+}
+
+.streak-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .streak-grid { grid-template-columns: 1fr; }
+}
+
+.streak-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+}
+
+.streak-blood { border-color: #5a2020; background: #1e1010; }
+.streak-type  { border-color: #3a4a20; background: #111a0a; }
+
+.streak-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.streak-body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.streak-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.streak-num {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent-light);
+}
+
+.streak-num-muted { color: var(--text-muted); font-size: 1.8rem; }
+
+.streak-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.streak-divider {
+  width: 1px;
+  height: 2.5rem;
+  background: var(--border);
+}
+
+.streak-vs,
+.streak-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* History table */
 table {
   width: 100%;
