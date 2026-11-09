@@ -124,7 +124,7 @@ def get_trends():
         return any(e["blood"] != "No Blood" for e in entries)
 
     def normal_type_day(entries):
-        return any(e["poo_type"] in NORMAL_TYPES for e in entries)
+        return all(e["poo_type"] in NORMAL_TYPES for e in entries)
 
     def calc_streaks(predicate):
         best = 0
